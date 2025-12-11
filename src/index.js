@@ -17,6 +17,10 @@ const userAgent = core.getInput('user-agent', { required: false });
 const flags = core.getInput('flags', { required: false });
 const output = core.getInput('output', { required: false });
 
+// AUTHENTICATION
+const secret_file = core.getInput('secret_file', { required: false });
+const prefetch_secrets = core.getInput('prefetch_secrets', { required: false });
+
 const json = core.getBooleanInput('json', { required: false });
 const includeRR = core.getBooleanInput('include-rr', { required: false });
 const omitRaw = core.getBooleanInput('omit-raw', { required: false });
@@ -74,6 +78,10 @@ async function run() {
     if (omitRaw) params.push('-or');
 
     if (flags) params.push(...parseFlagsToArray(flags));
+
+    // AUTHENTICATION
+    if (secret_file) params.push(...parseFlagsToArray(secret_file));
+    if (prefetch_secrets) params.push('-ps');
 
      // If everything is fine and github-report is set, generate the yaml config file.
      if (githubReport) {
