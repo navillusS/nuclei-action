@@ -10287,6 +10287,10 @@ const prefetch_secrets = core.getInput('prefetch_secrets', { required: false });
 // DEBUG & STUFF
 const debug = core.getInput('debug', { required: false });
 const svd = core.getInput('svd', { required: false });
+// disable check update
+const duc = core.getInput('duc', { required: false });
+
+
 
 const src_json = core.getBooleanInput('json', { required: false });
 const includeRR = core.getBooleanInput('include-rr', { required: false });
@@ -10353,6 +10357,8 @@ async function run() {
     // DUBUG & STUFF
     if (debug) params.push('-debug');
     if (svd) params.push('-svd');
+    // disable check update
+    if (duc) params.push('-duc');
 
      // If everything is fine and github-report is set, generate the yaml config file.
      if (githubReport) {
