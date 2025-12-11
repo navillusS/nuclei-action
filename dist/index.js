@@ -10284,6 +10284,10 @@ const output = core.getInput('output', { required: false });
 const secret_file = core.getInput('secret_file', { required: false });
 const prefetch_secrets = core.getInput('prefetch_secrets', { required: false });
 
+// DEBUG & STUFF
+const debug = core.getInput('debug', { required: false });
+const svd = core.getInput('svd', { required: false });
+
 const src_json = core.getBooleanInput('json', { required: false });
 const includeRR = core.getBooleanInput('include-rr', { required: false });
 const omitRaw = core.getBooleanInput('omit-raw', { required: false });
@@ -10345,6 +10349,10 @@ async function run() {
     // AUTHENTICATION
     if (secret_file) params.push(`-sf=${secret_file}`);
     if (prefetch_secrets) params.push('-ps');
+
+    // DUBUG & STUFF
+    if (debug) params.push('-debug');
+    if (svd) params.push('-svd');
 
      // If everything is fine and github-report is set, generate the yaml config file.
      if (githubReport) {
