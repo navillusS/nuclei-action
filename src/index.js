@@ -80,7 +80,7 @@ async function run() {
     if (flags) params.push(...parseFlagsToArray(flags));
 
     // AUTHENTICATION
-    if (secret_file) params.push(...parseFlagsToArray(secret_file));
+    if (secret_file) params.push(`-sf=${secret_file}`);
     if (prefetch_secrets) params.push('-ps');
 
      // If everything is fine and github-report is set, generate the yaml config file.
